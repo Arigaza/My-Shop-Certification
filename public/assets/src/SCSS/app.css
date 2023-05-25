@@ -1,0 +1,291 @@
+a {
+  text-decoration: none !important;
+  color: initial; }
+
+.headerwhite {
+  color: white !important; }
+
+.brown_bg_header {
+  background: rgba(148, 57, 29, 0.5) !important; }
+
+.headerwhite-100 {
+  color: white;
+  background: #94391d !important; }
+
+.whitecolor {
+  color: white; }
+
+.headerbrown {
+  color: #94391d; }
+
+.logohomepage {
+  height: 150px;
+  margin-left: 10px; }
+
+.Instagram_logo {
+  height: 40px; }
+
+header {
+  height: 82px; }
+
+.afterheader {
+  margin-top: 110px; }
+
+.navbarelse:hover,
+.elseactive, .collection_list:hover {
+  color: #f83d04; }
+
+.home-dropdown:hover,
+.activedropdown {
+  background-color: #94391d; }
+
+.fullscreen-nav > a:hover, .active_fullscreen-nav {
+  color: #f83d04 !important; }
+
+.navbar-background-color {
+  background: rgba(255, 255, 255, 0.5) !important; }
+
+.frontpagecontainer {
+  position: absolute;
+  margin: auto;
+  width: 100%;
+  height: 100%;
+  right: 0;
+  top: 0; }
+
+.frontpageimage {
+  height: 100vh;
+  width: 100vw;
+  display: inline-block;
+  object-fit: cover;
+  overflow: hidden;
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 1 !important; }
+
+.preview-selected-image {
+  border: 2px solid black; }
+
+.col_width_408 {
+  max-width: 408px !important;
+  padding: 0 0;
+  margin: 0 0;
+  display: flex;
+  flex-direction: column;
+  gap: 20px; }
+
+.Gallery_container {
+  gap: 20px;
+  display: flex;
+  flex-direction: column;
+  align-content: center; }
+
+.col_gap_20 {
+  gap: 20px;
+  justify-content: center; }
+
+.anti_overflow_container_xl {
+  position: relative;
+  overflow: hidden !important;
+  width: 408px;
+  height: 480px; }
+
+.anti_overflow_image_xl {
+  object-fit: cover;
+  width: 550px;
+  height: 900px; }
+
+.anti_overflow_container_sm {
+  position: relative;
+  overflow: hidden !important;
+  width: 408px;
+  height: 300px; }
+
+.anti_overflow_image_sm {
+  object-fit: cover;
+  width: 500px;
+  height: 550px; }
+
+.images-preview {
+  display: inline-block;
+  object-fit: cover;
+  overflow: hidden;
+  position: absolute; }
+
+.hovereffect {
+  text-align: center;
+  cursor: default; }
+
+.hovereffect .overlay {
+  display: flex;
+  align-content: center;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  position: absolute;
+  overflow: hidden;
+  width: 80%;
+  height: 80%;
+  left: 10%;
+  top: 10%;
+  -webkit-transition: opacity 0.35s, -webkit-transform 0.35s;
+  transition: opacity 0.35s, transform 0.35s;
+  -webkit-transform: scale(0, 1);
+  -ms-transform: scale(0, 1);
+  transform: scale(0, 1); }
+
+.hovereffect:hover .overlay {
+  opacity: 1;
+  filter: alpha(opacity=100);
+  -webkit-transform: scale(1);
+  -ms-transform: scale(1);
+  transform: scale(1); }
+
+.hovereffect img {
+  display: block;
+  position: relative;
+  -webkit-transition: all 0.35s;
+  transition: all 0.35s; }
+
+.hovereffect:hover img {
+  filter: url('data:image/svg+xml;charset=utf-8,<svg xmlns="http://www.w3.org/2000/svg"><filter id="filter"><feComponentTransfer color-interpolation-filters="sRGB"><feFuncR type="linear" slope="0.6" /><feFuncG type="linear" slope="0.6" /><feFuncB type="linear" slope="0.6" /></feComponentTransfer></filter></svg>#filter');
+  filter: brightness(0.6);
+  -webkit-filter: brightness(0.6); }
+
+.hovereffect h2 {
+  text-transform: uppercase;
+  text-align: center;
+  position: relative;
+  font-size: 17px;
+  background-color: transparent;
+  color: #FFF;
+  padding: 1em 0;
+  opacity: 0;
+  filter: alpha(opacity=0);
+  -webkit-transition: opacity 0.35s, -webkit-transform 0.35s;
+  transition: opacity 0.35s, transform 0.35s;
+  -webkit-transform: translate3d(0, -100%, 0);
+  transform: translate3d(0, -100%, 0); }
+
+.hovereffect a, .hovereffect p {
+  color: #FFF;
+  padding: 1em 0;
+  opacity: 0;
+  filter: alpha(opacity=0);
+  -webkit-transition: opacity 0.35s, -webkit-transform 0.35s;
+  transition: opacity 0.35s, transform 0.35s;
+  -webkit-transform: translate3d(0, 100%, 0);
+  transform: translate3d(0, 100%, 0); }
+
+.hovereffect:hover a, .hovereffect:hover p, .hovereffect:hover h2 {
+  opacity: 1;
+  filter: alpha(opacity=100);
+  -webkit-transform: translate3d(0, 0, 0);
+  transform: translate3d(0, 0, 0); }
+
+.Gallery {
+  margin-left: 16.66% !important; }
+
+#sidetab {
+  top: 0;
+  margin-top: 150px;
+  max-height: 70vh;
+  overscroll-behavior-y: contain;
+  flex-shrink: 1;
+  flex-grow: 1; }
+
+.h-10 {
+  max-height: 65vh;
+  overflow-y: auto;
+  perspective-origin: right top;
+  scrollbar-width: none; }
+
+.center {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  margin: auto; }
+
+@media (max-width: 992px) {
+  .h-10 {
+    max-height: 45vh; }
+
+  #sidetab {
+    max-height: 55vh; }
+
+  #homedropcontainer {
+    padding: 0 16px; }
+
+  .headerwhite {
+    background: rgba(148, 57, 29, 0.5) !important; }
+
+  .headerwhite {
+    background: none; }
+
+  .fullscreen-nav {
+    display: none; } }
+.modal {
+  display: none;
+  /* Hidden by default */
+  position: fixed;
+  /* Stay in place */
+  z-index: 1000000000;
+  /* Sit on top */
+  left: 0;
+  top: 0;
+  width: 100%;
+  /* Full width */
+  height: 100%;
+  /* Full height */
+  overflow: auto;
+  /* Enable scroll if needed */
+  background-color: rgba(0, 0, 0, 0.4);
+  /* Black w/ opacity */ }
+
+/* Modal Content/Box */
+.modal-content {
+  background-color: #fefefe;
+  margin: 5% auto;
+  /* 5% from the top and centered */
+  padding: 20px;
+  border: 1px solid #888;
+  width: 80%;
+  /* Could be more or less, depending on screen size */
+  height: 60%; }
+
+.form-signin {
+  max-width: 330px;
+  padding: 15px;
+  transition: background-color 1s;
+  background: rgba(255, 255, 255, 0.55); }
+  .form-signin .form-floating:focus-within {
+    z-index: 2; }
+  .form-signin input[type="email"] {
+    margin-bottom: -1px;
+    border-bottom-right-radius: 0;
+    border-bottom-left-radius: 0; }
+  .form-signin input[type="password"] {
+    margin-bottom: 10px;
+    border-top-left-radius: 0;
+    border-top-right-radius: 0; }
+  .form-signin.error {
+    background: rgba(255, 0, 0, 0.55); }
+
+/* The Close Button */
+.close {
+  color: #aaa;
+  float: right;
+  font-size: 28px;
+  font-weight: bold; }
+
+.close:hover,
+.close:focus {
+  color: black;
+  text-decoration: none;
+  cursor: pointer; }
+
+/*# sourceMappingURL=app.css.map */

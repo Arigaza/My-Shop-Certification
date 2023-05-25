@@ -1,0 +1,69 @@
+<IfModule mod_rewrite.c>
+Options -MultiViews
+    RewriteEngine on
+
+    ErrorDocument 404 /404
+    ErrorDocument 401 /401
+
+    RewriteCond %{HTTP_HOST} ^myshop.org
+    RewriteRule (.*) https://www.myshop.org/$1 [R=301,L]
+
+    RewriteCond $0#%{REQUEST_URI} ([^#]*)#(.*)\1$
+    RewriteRule ^.*$ - [E=CWD:%2]
+
+    RewriteCond %{REQUEST_FILENAME} !-d
+    RewriteRule ^(.*)/+$ $1 [R=301,L]
+
+    RewriteCond %{REQUEST_FILENAME} !-d
+    RewriteRule ^dashboard/module/(.*) /index.php?module=$1
+
+      # cas avec les page uniquement pour les tabs
+      RewriteCond %{REQUEST_FILENAME} !-d
+      RewriteRule ^ceramics/(.*)  /index.php?page=$1
+      RewriteCond %{REQUEST_FILENAME} !-d
+      RewriteRule ^paints/(.*) /index.php?page=$1
+      RewriteCond %{REQUEST_FILENAME} !-d
+      RewriteRule ^photographs/(.*) /index.php?page=$1
+
+    # cas avec le nom de la collection collection et la page
+    RewriteCond %{REQUEST_FILENAME} !-d
+    RewriteRule ^collections/ceramics/(.*)/(.*)  /index.php?collection=$1&page=$2
+    RewriteCond %{REQUEST_FILENAME} !-d
+    RewriteRule ^collections/photographs/(.*)/(.*)  /index.php?collection=$1&page=$2
+    RewriteCond %{REQUEST_FILENAME} !-d
+    RewriteRule ^collections/paints/(.*)/(.*)  /index.php?collection=$1&page=$2
+
+        # cas avec le nom de la collection  uniquement
+    RewriteCond %{REQUEST_FILENAME} !-d
+    RewriteRule ^collections/ceramics/(.*)  /index.php?collection=$1
+    RewriteCond %{REQUEST_FILENAME} !-d
+    RewriteRule ^collections/photographs/(.*)  /index.php?collection=$1
+    RewriteCond %{REQUEST_FILENAME} !-d
+    RewriteRule ^collections/paints/(.*)  /index.php?collection=$1
+  
+# cas sous collection sans la page avec le nom de la collection et sous collection
+    RewriteCond %{REQUEST_FILENAME} !-d
+    RewriteRule ^sous-collection/ceramics/(.*)/(.*)  /index.php?collection=$1&subcollection=$2
+    RewriteCond %{REQUEST_FILENAME} !-d
+    RewriteRule ^sous-collection/paints/(.*)/(.*)  /index.php?collection=$1&subcollection=$2
+    RewriteCond %{REQUEST_FILENAME} !-d
+    RewriteRule ^sous-collection/photographs/(.*)/(.*)  /index.php?collection=$1&subcollection=$2
+
+ # cas avec les page uniquement pour les tabs
+ RewriteCond %{REQUEST_FILENAME} !-d
+ RewriteRule ^admin/ceramics/(.*)  /index.php?tabid=$1
+ RewriteCond %{REQUEST_FILENAME} !-d
+ RewriteRule ^admin/paints/(.*) /index.php?tabid=$1
+ RewriteCond %{REQUEST_FILENAME} !-d
+ RewriteRule ^admin/photographs/(.*) /index.php?tabid=$1
+ RewriteCond %{REQUEST_FILENAME} !-d
+ RewriteRule ^admin/home-image/(.*) /index.php?tabid=$1
+
+
+
+
+    RewriteCond %{REQUEST_FILENAME} !-f
+    RewriteCond %{REQUEST_FILENAME} !-d
+    RewriteCond %{REQUEST_FILENAME} !-l
+    RewriteRule ^.*$ %{ENV:CWD}index.php [QSA,L]
+</IfModule>

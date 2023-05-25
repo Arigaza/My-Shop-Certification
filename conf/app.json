@@ -1,0 +1,12 @@
+{
+  "domain": "www.myshop.org",
+  "originating_url": "https://www.myshop.org",
+  "originating_segment": "/",
+  "hmacData": "loCVRhEEWLCGjV7kRU06RBhXRhr2yzpcPQQE4C9Xvp",
+  "version": "1.0.0",
+  "user_session_name": "MyShopUserSession",
+  "session_token_label": "MYSHOP_CSRF_TOKEN_SESS_IDX",
+  "form_token_label": "My-Shop-csrf-token-label",
+  "hashAlgo": "sha3-512",
+  "cipherAlgo": "aes-256-cbc"
+}
