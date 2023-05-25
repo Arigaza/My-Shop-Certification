@@ -95,12 +95,12 @@ class AdminController extends Controller
         $result = "Unknown Error";
         $myShopUI = MyShopController::getInstance();
         if (isset($_SESSION['admin'])) {
-            $admin = ($_SESSION['admin'] == 1) ? true : false;
+            $utilisateur = true;
         } else {
-            $admin = false;
+            $utilisateur = false;
         }
 
-        $requestIsAjax = $admin && $myShopUI->domainCheck();
+        $requestIsAjax = $utilisateur && $myShopUI->domainCheck();
         if (!$requestIsAjax) {
             exit();
         }

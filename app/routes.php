@@ -173,7 +173,7 @@ return [
     ],
     'admin' => [
         'access' => 'web',
-        'privacy' => 'admin',
+        'privacy' => 'private',
         'method' => 'get',
         'route' => '/admin',
         'allowed_params_regex' =>  'int+',
@@ -183,7 +183,7 @@ return [
     ],
     'admin/ceramics' => [
         'access' => 'web',
-        'privacy' => 'admin',
+        'privacy' => 'private',
         'method' => 'get',
         'route' => '/admin/ceramics',
         'allowed_params_regex' =>  'int+',
@@ -193,7 +193,7 @@ return [
     ],
     'admin/photographs' => [
         'access' => 'web',
-        'privacy' => 'admin',
+        'privacy' => 'private',
         'method' => 'get',
         'route' => '/admin/photographs',
         // 'allowed_params_regex' =>  'int+',
@@ -203,7 +203,7 @@ return [
     ],
     'admin/paints' => [
         'access' => 'web',
-        'privacy' => 'admin',
+        'privacy' => 'private',
         'method' => 'get',
         'route' => '/admin/paints',
         // 'allowed_params_regex' =>  'int+',
@@ -213,7 +213,7 @@ return [
     ],
     'admin/collections' => [
         'access' => 'web',
-        'privacy' => 'admin',
+        'privacy' => 'private',
         'method' => 'get',
         'route' => '/admin/collections',
         'allowed_params_regex' =>  'int+',
@@ -223,7 +223,7 @@ return [
     ],
     'admin/home-image' => [
         'access' => 'web',
-        'privacy' => 'admin',
+        'privacy' => 'private',
         'method' => 'get',
         'route' => '/admin/home-image',
         'allowed_params_regex' =>  'int+',
@@ -233,7 +233,7 @@ return [
     ],
     'admin/setting' => [
         'access' => 'web',
-        'privacy' => 'admin',
+        'privacy' => 'private',
         'method' => 'get',
         'route' => '/admin/setting',
         'allowed_params_regex' =>  'int+',
@@ -243,13 +243,52 @@ return [
     ],
     'admin/post' => [
         'access' => 'web',
-        'privacy' => 'admin',
+        'privacy' => 'private',
         'method' => 'post',
         'route' => '/admin/post',
         'allowed_params_regex' =>  'int+',
         'class' => AdminController::class,
         'action' => 'insertdata',
         'info' => 'Insere une nouvelle ceramics.'
+    ],
+    // liste et modification des users 
+    
+    'users'=> [
+        'access' => 'web',
+        'privacy' => 'admin',
+        'method' => 'get',
+        'route' => '/admin/users',
+        'class' => Utilisateurs::class,
+        'action' => 'listUsers',
+        'info' => 'Exemple de CRUD utilisateurs.'
+    ],
+    'newuser'=> [
+        'access' => 'web',
+        'privacy' => 'admin',
+        'method' => 'get',
+        'route' => '/admin/users/newuser',
+        'class' => Utilisateurs::class,
+        'action' => 'newUser',
+        'info' => 'Ajouter un utilisateur.'
+    ],
+    'edituser'=> [
+        'access' => 'web',
+        'privacy' => 'private',
+        'method' => 'get',
+        'route' => '/admin/users/edituser',
+        'allowed_params_regex' => 'int+',
+        'class' => Utilisateurs::class,
+        'action' => 'editUser',
+        'info' => 'Éditer un utilisateur.'
+    ],
+    'deleteuser'=> [
+        'access' => 'web',
+        'privacy' => 'admin',
+        'method' => 'get',
+        'route' => '/admin/users/deleteuser',
+        'allowed_params_regex' => 'int+',
+        'class' => Utilisateurs::class,
+        'action' => 'deleteUser',
+        'info' => 'Supprimer un utilisateur.'
     ]
-    // autre nom des routes... 
 ];

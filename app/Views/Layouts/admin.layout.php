@@ -42,8 +42,10 @@ use MYSHOP\Controllers\MyShopController;
     </div>
     <script src="<?= MyShopController::assets('/js/jquery.min.js'); ?>"></script>
     <script src="<?= MyShopController::assets('/js/crypto-js.min.js'); ?>"></script>
+    <script src="<?= MyShopController::assets('/js/aesjson.min.js'); ?>"></script>
     <script src="<?= MyShopController::assets('/js/docready.min.js'); ?>"></script>
     <script src="<?= MyShopController::assets('/js/app.min.js'); ?>"></script>
+    <script src="<?= MyShopController::assets('/js/users.min.js'); ?>"></script>
 
 </body>
 

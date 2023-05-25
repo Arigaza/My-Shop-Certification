@@ -59,6 +59,13 @@ Options -MultiViews
  RewriteCond %{REQUEST_FILENAME} !-d
  RewriteRule ^admin/home-image/(.*) /index.php?tabid=$1
 
+   # Récupération de la variable get uid
+   RewriteCond %{REQUEST_FILENAME} !-d
+   RewriteRule ^admin/users/edituser/(.*) /index.php?id=$1
+
+   # Récupération de la variable get uid
+   RewriteCond %{REQUEST_FILENAME} !-d
+   RewriteRule ^admin/users/deleteuser/(.*) /index.php?id=$1
 
 
 

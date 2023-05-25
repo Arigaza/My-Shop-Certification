@@ -244,7 +244,7 @@ final class MyShopController  extends Controller
      ***/
     public static function isConnected(): bool
     {
-        return isset($_SESSION['admin']) && !empty($_SESSION['admin']);
+        return isset($_SESSION['admin']) &&($_SESSION['admin']=== 1 || $_SESSION['admin'] === 0 );
     }
 
     /*** Vérifie si un utilisateur est connecté et est administrateur
@@ -252,12 +252,15 @@ final class MyShopController  extends Controller
      ***/
     public static function isAdmin(): bool
     {
+        $bool= false;
         if (isset($_SESSION['admin']) && !empty($_SESSION['admin'])) {
-            return $_SESSION['admin'] == 1;
-        } else {
-            return false;
-        }
+            if ($_SESSION['admin'] === 1) {
+     $bool= true;
+        } 
     }
+    return $bool;
+
+}
     /*** Affiche la bannière de login
      * @return void
      ***/
@@ -426,7 +429,17 @@ final class MyShopController  extends Controller
         return hash_equals($requestToken, $expected);
     }
 
-
+   /**
+     * Sécurité :
+     * Insert un champ caché avec le jeton CSRF
+     * @return string *
+     */
+    public static function insertHiddenToken(): string
+    {
+        $csrfToken = self::getCSRFToken();
+        return '<input type="hidden" name="' . self::xssafe((new self)->getConf('form_token_label')) . '" value="' . $csrfToken . '">';
+    }
+    
     /***
      * Valide le jeton CSRF pour les données postées
      * @return bool *

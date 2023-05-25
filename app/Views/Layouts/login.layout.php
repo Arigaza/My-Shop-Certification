@@ -13,7 +13,6 @@
  */
 
 use MYSHOP\Controllers\MyShopController;
-
 ?>
 <!DOCTYPE html>
 <html lang="en">

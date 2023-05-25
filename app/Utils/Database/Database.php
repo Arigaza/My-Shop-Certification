@@ -11,6 +11,8 @@ class PdoDb
     private static $connect = null;
     private PDO $conx;
 
+   
+
     private function __construct()
     {
         //  dans conf mais ne semble pas nécessaire
@@ -43,6 +45,58 @@ class PdoDb
             die($message);
         }
     }
+
+    public static function showDebug(string $raw_sql, array $parameters): string|array|null
+    {
+
+        $keys = [];
+        $values = [];
+
+        /*
+         * Obtient les clés les plus longues en premier,
+         * afin que le remplacement de la regex ne coupe pas les marqueurs
+         */
+        $isNamedMarkers = false;
+        if (count($parameters) && is_string(key($parameters))) {
+            uksort($parameters, function($k1, $k2) {
+                return strlen($k2) - strlen($k1);
+            });
+            $isNamedMarkers = true;
+        }
+        foreach ($parameters as $key => $value) {
+
+            // Vérifie si des paramètres nommés ':param' ou des paramètres anonymes ? sont utilisés
+            if (is_string($key)) {
+                $keys[] = '/:'.ltrim($key, ':').'/';
+            } else {
+                $keys[] = '/[?]/';
+            }
+
+            // Mets le paramètre dans un format lisible par l'être humain
+            if (is_string($value)) {
+                $values[] = "'" . addslashes($value) . "'";
+            } elseif(is_int($value)) {
+                $values[] = strval($value);
+            } elseif (is_float($value)) {
+                $values[] = strval($value);
+            } elseif (is_array($value)) {
+                $values[] = implode(',', $value);
+            } elseif (is_null($value)) {
+                $values[] = 'NULL';
+            }
+        }
+
+        $query = '';
+        if ($isNamedMarkers) {
+            $query = preg_replace($keys, $values, $raw_sql);
+        } else {
+            $query = preg_replace($keys, $values, $raw_sql, 1);
+        }
+
+        return '<div style="background:#b6e0b0;padding:10px;border:1px solid #CCC;color:#333;">'.$query.'</div>';
+
+    }
+
 // PdoDb est un singleton grace à cette classe
     public static function getInstance(): ?PdoDb
     {
@@ -136,7 +190,9 @@ class PdoDb
         }
         $reqInsert .= ' WHERE id = :id';
         $reqExectue['id'] = $id;
+        print_r($reqExectue['id']);
         $prepared = $this->conx->prepare($reqInsert);
+        echo self::showDebug($reqInsert, $reqExectue);
 
         // On exécute la requête.
         // Retourne TRUE en cas de succès ou FALSE en cas d'échec.
@@ -154,13 +210,13 @@ class PdoDb
     // Supprimer des données
     public function delete($table, $id): bool
     {
+       
         $data = [
             'id' => $id,
         ];
         $sql = 'DELETE FROM  '. $table. '  WHERE  id  =  :id';
         // statement
         $stmt= $this->conx->prepare($sql);
-        
         try {
             $stmt->execute($data);
             $result = true;

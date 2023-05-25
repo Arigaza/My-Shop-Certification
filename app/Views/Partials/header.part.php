@@ -14,7 +14,7 @@ if ($_SERVER['REQUEST_URI'] === '/' && isset($data['HomeImage'][0]['image_path']
 <li><a class="dropdown-item whitecolor home-dropdown" href="'. MyShopController::getRoute('paints').'">Peintre</a></li>';
 
 // check if admin or not
-   if (isset($_SESSION['admin']) && $_SESSION['admin'] === 1) {
+   if (isset($_SESSION['admin']) ) {
       $header .= '<li><a class="dropdown-item whitecolor home-dropdown" href="'. MyShopController::getRoute('admin').'">Admin</a></li>';
    } else {
       $header .= '<li><a class="dropdown-item whitecolor home-dropdown" href="'. MyShopController::getRoute('contact').'">Contact</a></li>';
@@ -33,7 +33,7 @@ if ($_SERVER['REQUEST_URI'] === '/' && isset($data['HomeImage'][0]['image_path']
     <a class="navbar-brand headerwhite p-2 rounded" href="'. MyShopController::getRoute('paints').'">Peintre Mural</a> 
 </div>';
    // check if user is admin or not
-   if (isset($_SESSION['admin']) && $_SESSION['admin'] === 1) {
+   if (isset($_SESSION['admin']) ) {
       $header .= '<div class=" nav-item p-3 col fullscreen-nav">
    <a id="header_admin" class="navbar-brand headerwhite p-2 rounded" href="'. MyShopController::getRoute('admin').'" >Admin</a>
    </div>';
@@ -72,7 +72,7 @@ else {
     <li><a class="dropdown-item headerbrown navbarelse" href="'. MyShopController::getRoute('paints').'">Peintre Mural</a></li>';
 
    // check if admin or not
-   if (isset($_SESSION['admin']) && $_SESSION['admin'] === 1) {
+   if (isset($_SESSION['admin'])) {
 
       $header .= '<li><a class="dropdown-item headerbrown navbarelse" href="'. MyShopController::getRoute('admin').'">Admin</a></li>';
    } else {
@@ -86,7 +86,7 @@ else {
    $header .= '<div class="nav-item col p-3 fullscreen-nav"><a class="navbar-brand ' . (str_contains($_SERVER['REQUEST_URI'], 'paints') ? "active_fullscreen-nav" : "headerbrown") . ' p-2 navbarelse" href="'. MyShopController::getRoute('paints').'">Peintre Mural</a></div>';
 
    // check if admin or not
-   if (isset($_SESSION['admin']) && $_SESSION['admin'] === 1) {
+   if (isset($_SESSION['admin']) ) {
 
       $header .= '<div class=" nav-item p-3 col fullscreen-nav">
 <a class="navbar-brand headerbrown p-2 navbarelse" href="'. MyShopController::getRoute('admin').'" >Admin</a>
