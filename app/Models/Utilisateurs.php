@@ -16,8 +16,8 @@ class UtilisateursModel
     public string $name;
     public string $email;
     public string $password;
-    public $updated_at;
-    public $created_at;
+    public string $updated_at;
+    public string $created_at;
     /**
      * Système :
      * Constructeur du modèle User

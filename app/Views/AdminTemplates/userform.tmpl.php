@@ -101,12 +101,18 @@ if (isset($_POST['useraction']) && !empty($_POST['useraction'])) {
     ?>
 
     <form action="<?= $actionform; ?>" id="userform" method="post" autocomplete="off">
-
+<?php 
+if ($_SESSION['admin']=== 1) {
+    $return =MyShopController::getRoute('users');
+} else {
+   $return = MyShopController::getRoute('admin/setting');
+}
+?>
         <!-- Header Area -->
         <div class="row d-flex justify-content-center">
             <div class="col-md-6 text-center p-3 bg-ui wow bounceIn">
                 <a class="d-flex justify-content-start small link-underline link-underline-opacity-25 link-underline-opacity-100-hover"
-                   href="<?= MyShopController::getRoute('users'); ?>">&lt; Retour à la liste</a>
+                   href="<?= $return; ?>">&lt; Retour</a>
                 <?php if ($action === 'newuser') { ?>
                     <svg xmlns="http://www.w3.org/2000/svg" width="64" height="64" fill="#833500"
                          class="bi bi-person-add"
@@ -187,10 +193,10 @@ if (isset($_POST['useraction']) && !empty($_POST['useraction'])) {
 
                     $surnameValidationClass = in_array('surname', $formErrors) ? ' is-invalid' : '';
                     ?>
-                    <label for="surname" class="form-label bg-ui">Prénom <?= $mandatory; ?></label>
+                    <label for="surname" class="form-label bg-ui">Nom <?= $mandatory; ?></label>
                     <input type="text" id="surname" name="surname"
                            class="form-control<?= $surnameValidationClass; ?>" value="<?= $surname; ?>" required>
-                    <div class="invalid-feedback">Veuillez saisir un prénom !</div>
+                    <div class="invalid-feedback">Veuillez saisir un nom !</div>
                 </div>
 
 
@@ -202,10 +208,10 @@ if (isset($_POST['useraction']) && !empty($_POST['useraction'])) {
                             ? $_POST['name'] : '');
                     $nameValidationClass = in_array('name', $formErrors) ? ' is-invalid' : '';
                     ?>
-                    <label for="name" class="form-label bg-ui">Nom <?= $mandatory; ?></label>
+                    <label for="name" class="form-label bg-ui">Prénom <?= $mandatory; ?></label>
                     <input type="text" id="name" name="name"
                            class="form-control<?= $nameValidationClass; ?>" value="<?= $name; ?>" required>
-                    <div class="invalid-feedback">Veuillez saisir un nom !</div>
+                    <div class="invalid-feedback">Veuillez saisir un prénom !</div>
                 </div>
 
 

@@ -4,6 +4,7 @@ namespace MYSHOP\Controllers;
 
 use MYSHOP\Utils\Database\PdoDb;
 use MYSHOP\Models;
+use MYSHOP\Models\InstagramModele;
 use MYSHOP\Models\TabsModele;
 
 class AdminController extends Controller
@@ -242,4 +243,42 @@ class AdminController extends Controller
         }
         $db->delete($tab, $id);
     }
+
+
+    // list les compte instagram enregistré
+    public function listInstagram() 
+    {
+        $db = PdoDb::getInstance();
+
+        $Instagram = $db->requete('SELECT * FROM instagram');
+        $data['color'] = '#ffffff';
+        $data['Instagram'] = $Instagram;
+       echo $this->render('Layouts.admin', 'AdminTemplates.instagram', $data);
+    }
+
+// créer un compte instagram
+public function createInstagram(array $post): bool
+{
+    print_r($post);
+    /**
+     * On crée un objet instagram basé sur son modèle
+     */
+
+     $instagramObj = new InstagramModele($post);
+    // On se connecte à la database
+    $cnx = PdoDb::getInstance();
+
+    /**
+     * On insère le nouvel utilisateur en base de données
+     */
+    return $cnx->inserer('Instagram', $instagramObj);
+}
+
+// modifier un compte instagram
+
+
+
+// supprimer un compte instagram
+
+
 }

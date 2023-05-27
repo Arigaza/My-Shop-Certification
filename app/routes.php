@@ -290,5 +290,33 @@ return [
         'class' => Utilisateurs::class,
         'action' => 'deleteUser',
         'info' => 'Supprimer un utilisateur.'
-    ]
+    ], 
+    // gestion instagram
+    'instagram'=> [
+        'access' => 'web',
+        'privacy' => 'private',
+        'method' => 'get',
+        'route' => '/admin/instagram/list',
+        'class' => AdminController::class,
+        'action' => 'listInstagram',
+        'info' => 'Exemple de CRUD utilisateurs.'
+    ],
+    'editinstagram'=> [
+        'access' => 'web',
+        'privacy' => 'private',
+        'method' => 'get',
+        'route' => '/admin/instagram/list',
+        'class' => AdminController::class,
+        'action' => 'editInstagram',
+        'info' => 'Exemple de CRUD utilisateurs.'
+    ],
+    'deleteinstagram'=> [
+        'access' => 'web',
+        'privacy' => 'private',
+        'method' => 'get',
+        'route' => '/admin/instagram/list',
+        'class' => AdminController::class,
+        'action' => 'deleteInstagram',
+        'info' => 'Exemple de CRUD utilisateurs.'
+    ],
 ];

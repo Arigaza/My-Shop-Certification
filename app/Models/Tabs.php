@@ -17,8 +17,8 @@ public string $image_path;
 // public string
 public int $translate_x;
 public int $translate_y;
-public  $created_at;
-public  $updated_at;
+public string $created_at;
+public string $updated_at;
 
  /** 
      *@param $post

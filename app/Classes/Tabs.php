@@ -24,7 +24,7 @@ class TabController extends Controller
         $rank = $page * $number - $number;
 
         $db = PdoDb::getInstance();
-        $Instagram = $db->requete('SELECT * FROM instagram');
+        $Instagram = $db->requete('SELECT * FROM instagram WHERE active = 1');
         $Collections = $db->requete('SELECT * FROM collections');
         $Collections = $db->requete('SELECT DISTINCT collections.name, collections.description FROM collections JOIN '.$tab.' ON '.$tab.'.collections_id = collections.id ORDER BY collections.name');
         $Content = $db->requete('SELECT 
