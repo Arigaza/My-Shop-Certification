@@ -16,7 +16,7 @@
                       <li><a class="dropdown-item whitecolor home-dropdown" href="' . MyShopController::getRoute('admin/paints') . '">Peintre</a></li>
                       <li><a class="dropdown-item whitecolor home-dropdown" href="' . MyShopController::getRoute('admin/collections') . '">Collection</a></li>
                       <li><a class="dropdown-item whitecolor home-dropdown" href="' . MyShopController::getRoute('admin/home-image') . '">Home Image</a></li>
-                      <li><a class="dropdown-item whitecolor home-dropdown" href="' . MyShopController::getRoute('admin/logout') . '">Se déconnecter</a></li>
+                      <li><button  class="dropdown-item whitecolor home-dropdown logoutBtn" href="' . MyShopController::getRoute('admin/logout') . '">Se déconnecter</></li>
                       <li><a class="dropdown-item whitecolor home-dropdown" href="' . MyShopController::getRoute('admin/setting') . '">Paramètres</a></li>
                       </ul>
                 </div>     
@@ -38,7 +38,7 @@
             <div class=" nav-item p-3 col fullscreen-nav">
             <a id="header_admin" class="navbar-brand headerwhite p-2 rounded" href="' . MyShopController::getRoute('admin/setting') . '">Paramètres</a>
         </div>
-        <div class="nav-item col p-3 "><a class="navbar-brand headerwhite p-2 rounded">Se déconnecter</a>
+        <div class="nav-item col p-3 "><div class="navbar-brand headerwhite p-2 rounded logoutBtn">Se déconnecter</div>
         </div>
             </header>';
     }
@@ -65,7 +65,7 @@
                           <li><a class="dropdown-item headerbrown navbarelse" href="' . MyShopController::getRoute('admin/paints') . '">Peintre</a></li>
                           <li><a class="dropdown-item headerbrown navbarelse" href="' . MyShopController::getRoute('admin/collections') . '">Collection</a></li>
                           <li><a class="dropdown-item headerbrown navbarelse" href="' . MyShopController::getRoute('admin/home-image') . '">Home Image</a></li>
-                          <li><a class="dropdown-item headerbrown navbarelse">Se déconnecter</a></li>
+                          <li><div   class="dropdown-item headerbrown navbarelse logoutBtn">Se déconnecter</div></li>
                         </ul>
                     </div>     
                     <div class="nav-item col p-3 fullscreen-nav">
@@ -88,7 +88,7 @@
                 <a class="navbar-brand ' . (str_contains($_SERVER['REQUEST_URI'], 'setting') ? "active_fullscreen-nav" : "headerbrown") . ' p-2 navbarelse" href="' . MyShopController::getRoute('admin/setting') . '">Paramètres</a>
                 </div>
                 <div class="nav-item col p-3 fullscreen-nav">
-                    <a class="navbar-brand headerbrown p-2 navbarelse">Se déconnecter</a>
+                    <div  class="navbar-brand headerbrown p-2 navbarelse logoutBtn">Se déconnecter</div>
                 </div>
                 
                 </header>';

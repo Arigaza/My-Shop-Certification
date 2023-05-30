@@ -38,9 +38,7 @@ public function show($number = 6,$tab,$slug, $subcollection = null){
         $rank = $page * $number - $number;
 
         $db = PdoDb::getInstance();
-        // $sqltest =;
         $Instagram = $db->requete('SELECT * FROM instagram WHERE active = 1');
-
             $Collection = $db->requete('SELECT * FROM collections WHERE collections.name = "'. $collectionName .'"');
         $Sub_collection_name = $db->requete('SELECT DISTINCT '.$tab.'.sub_collection_name, collections.name FROM '.$tab.' JOIN collections ON collections.id = '.$tab.'.collections_id WHERE collections.name = "'. $collectionName .'" ORDER BY '.$tab.'.sub_collection_name');
 

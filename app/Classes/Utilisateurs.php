@@ -214,7 +214,6 @@ if ($connect->argon2idHashVerify($connect->aesDecrypt(base64_decode($data->passw
      */
     public function createUser(array $post): bool
     {
-        print_r($post);
         /**
          * On crée un objet User basé sur son modèle avec les données du post nettoyées
          */

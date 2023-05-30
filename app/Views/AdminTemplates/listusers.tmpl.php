@@ -13,6 +13,8 @@ $roles = ['user'=>'Utilisateur', 'admin'=>'Administrateur'];
 <div class="container">
     
     <div class="row">
+    <a class="d-flex justify-content-start small link-underline link-underline-opacity-25 link-underline-opacity-100-hover"
+                   href="<?= MyShopController::getRoute('admin/setting'); ?>">&lt; Retour</a>
         <div class="col mx-3 my-3">
             <table class="table table-striped table-condensed">
                 <tr>

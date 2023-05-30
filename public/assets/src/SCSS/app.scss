@@ -57,6 +57,10 @@ header {
 .elseactive, .collection_list:hover {
   color: rgb(248, 61, 4);
 }
+.logoutBtn:hover {
+  color: rgb(248, 61, 4) !important;
+  cursor: pointer;
+}
 
 .home-dropdown:hover,
 .activedropdown {

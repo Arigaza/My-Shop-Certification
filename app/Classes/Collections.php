@@ -39,7 +39,7 @@ class CollectionController extends Controller
         $rank = $page * $number - $number;
     
         $db = PdoDb::getInstance();
-        $Instagram = $db->requete('SELECT * FROM instagram');
+        $Instagram = $db->requete('SELECT * FROM instagram WHERE active = 1');
 
         $Content = $db->requete('SELECT 
         ' . $tab . '.name AS name, 

@@ -49,9 +49,9 @@ if ($requestIsAjax) {
     $ajaxRequest = json_decode(file_get_contents('php://input'));
     // Vérification de la requête ajax avec son CSRF Token
     if ($myShopUI->validateAjaxRequest()) {
-// print_r($_FILES);
-// $testing = parse_str(file_get_contents('php://input'), $ajaxRequest2);
-// print_r($ajaxRequest2 );
+        // print_r($_FILES);
+        // $testing = parse_str(file_get_contents('php://input'), $ajaxRequest2);
+        // print_r($ajaxRequest2 );
 
         // Le CSRF Token est valide
         // On ne spécifie aucun cache pour la réponse
@@ -91,10 +91,12 @@ if ($requestIsAjax) {
                         if (isset($ajaxRequest->action) && $ajaxRequest->action === 'disconnect') {
                             if (isset($_SESSION['mvcRoutes'][$routeName]['action']) && $_SESSION['mvcRoutes'][$routeName]['route'] === $requestUri) {
                                 $MyShopUI = $_SESSION['mvcRoutes'][$routeName]['class']::getInstance();
+                                session_unset();
+                                session_destroy();
                                 echo json_encode([
                                     'status' => 200,
                                     'action' => $ajaxRequest->action,
-                                    'disconnected' => $MyShopUI->{$_SESSION['mvcRoutes'][$routeName]['action']}()
+                                    'disconnected' => true
                                 ]);
                                 exit();
                             }
@@ -114,15 +116,14 @@ if ($requestIsAjax) {
                         }
                     }
                     break;
-                    case '/admin/post':
-                        if (isset($ajaxRequest->action) && $ajaxRequest->action === 'delete') {
-                            if (isset($_SESSION['admin'])) {
-                                $myShopUI = AdminController::getInstance();
-                                // print_r();
-                                $myShopUI->deleteData($ajaxRequest->tab, $ajaxRequest->id);
-
-                            }
-                        }     
+                case '/admin/post':
+                    if (isset($ajaxRequest->action) && $ajaxRequest->action === 'delete') {
+                        if (isset($_SESSION['admin'])) {
+                            $myShopUI = AdminController::getInstance();
+                            // print_r();
+                            $myShopUI->deleteData($ajaxRequest->tab, $ajaxRequest->id);
+                        }
+                    }
             }
         } else {
 
@@ -172,14 +173,14 @@ if ($requestIsAjax) {
                     exit();
                     break;
 
-                    case str_contains($requestUri,'admin/home-image'):
-                        $content = new AdminController;
-                        echo json_encode([
-                            'status' => 200,
-                            'action' => 'update',
-                            'html' => $content->showedithomeimage(),
-                        ]);
-                        break;
+                case str_contains($requestUri, 'admin/home-image'):
+                    $content = new AdminController;
+                    echo json_encode([
+                        'status' => 200,
+                        'action' => 'update',
+                        'html' => $content->showedithomeimage(),
+                    ]);
+                    break;
             }
         }
 
@@ -217,8 +218,7 @@ if ($requestIsAjax) {
         header('Location:' . MyShopController::getRoute('404'));
         exit();
         // Si la route existe
-    } 
-    else {
+    } else {
         if ($_SESSION['mvcRoutes'][$routeName]['privacy'] === 'private') {
             if (!$myShopUI->isConnected()) {
                 header('Location:' . MyShopController::getRoute('login'));

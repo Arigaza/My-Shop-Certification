@@ -46,6 +46,7 @@ use MYSHOP\Controllers\MyShopController;
     <script src="<?= MyShopController::assets('/js/docready.min.js'); ?>"></script>
     <script src="<?= MyShopController::assets('/js/app.min.js'); ?>"></script>
     <script src="<?= MyShopController::assets('/js/users.min.js'); ?>"></script>
+    <script src="<?= MyShopController::assets('/js/instagram.min.js'); ?>"></script>
 
 </body>
 

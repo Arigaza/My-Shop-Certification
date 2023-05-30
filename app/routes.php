@@ -260,7 +260,7 @@ return [
         'route' => '/admin/users',
         'class' => Utilisateurs::class,
         'action' => 'listUsers',
-        'info' => 'Exemple de CRUD utilisateurs.'
+        'info' => 'List utilisateurs.'
     ],
     'newuser'=> [
         'access' => 'web',
@@ -299,24 +299,33 @@ return [
         'route' => '/admin/instagram/list',
         'class' => AdminController::class,
         'action' => 'listInstagram',
-        'info' => 'Exemple de CRUD utilisateurs.'
+        'info' => 'list instagram.'
+    ],
+    'newinstagram'=> [
+        'access' => 'web',
+        'privacy' => 'admin',
+        'method' => 'get',
+        'route' => '/admin/instagram/newinstagram',
+        'class' => AdminController::class,
+        'action' => 'newinstagram',
+        'info' => 'Ajouter un Instagram.'
     ],
     'editinstagram'=> [
         'access' => 'web',
         'privacy' => 'private',
         'method' => 'get',
-        'route' => '/admin/instagram/list',
+        'route' => '/admin/instagram/edit',
         'class' => AdminController::class,
         'action' => 'editInstagram',
-        'info' => 'Exemple de CRUD utilisateurs.'
+        'info' => 'edit instagram.'
     ],
     'deleteinstagram'=> [
         'access' => 'web',
         'privacy' => 'private',
         'method' => 'get',
-        'route' => '/admin/instagram/list',
+        'route' => '/admin/instagram/delete',
         'class' => AdminController::class,
         'action' => 'deleteInstagram',
-        'info' => 'Exemple de CRUD utilisateurs.'
+        'info' => 'Delete instagram.'
     ],
 ];

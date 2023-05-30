@@ -67,6 +67,13 @@ Options -MultiViews
    RewriteCond %{REQUEST_FILENAME} !-d
    RewriteRule ^admin/users/deleteuser/(.*) /index.php?id=$1
 
+ # Récupération de la variable get uid
+ RewriteCond %{REQUEST_FILENAME} !-d
+ RewriteRule ^admin/instagram/edit/(.*) /index.php?id=$1
+
+ # Récupération de la variable get uid
+ RewriteCond %{REQUEST_FILENAME} !-d
+ RewriteRule ^admin/instagram/delete/(.*) /index.php?id=$1
 
 
     RewriteCond %{REQUEST_FILENAME} !-f

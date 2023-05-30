@@ -21,7 +21,7 @@ docReady(() => {
     const navloginBtn = d.querySelector('#navloginBtn');
     const span = d.getElementsByClassName("close")[0];
     const loginBtn = d.querySelector('#loginBtn');
-    const logoutBtn = d.querySelector('#logout');
+    const logoutBtn = d.querySelectorAll('.logoutBtn');
     const passwordConfirm = d.querySelector('#password_confirm');
     const password = d.querySelector('#password');
     const form = d.querySelector('#loginContainer');
@@ -164,6 +164,31 @@ docReady(() => {
 
             }
         });
+    }
+
+    if (logoutBtn !== null) {
+        logoutBtn.forEach(element => {
+            element.addEventListener('click', (e) => {
+                     fetch('/disconnect', {
+                         headers: ajaxHeaders,
+                         method: 'post',
+                         redirect: 'follow',
+                         body: JSON.stringify({
+                             "type": "cnx",
+                             "action": "disconnect",
+                         })
+                     }).then((response) => {
+                         return response.json();
+                     }).then((cnx) => {
+                        if (cnx.status === 200 && cnx.action === 'disconnect' && cnx.disconnected === true) {
+                            d.location.href = '/';
+                        }
+                     });
+     
+                 
+             });
+        });
+       
     }
 
     if (registerBtn !== null) {

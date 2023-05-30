@@ -175,24 +175,39 @@ class PdoDb
         if (gettype($data) == "object") {
             $data = $dataTab;
         }
+        if (isset($data['active'])) {
+            if ($data['active'] == "") {
+                $data['active'] = 0; 
+            }
+        }
+        
+        // print_r($data);
+        // print_r($id);
         // on enlève le created_at que l'on ne veut pas modifier
         unset($data['created_at']);
         // On prépare la requête
         $reqExectue = [];
         $reqInsert = 'UPDATE ' . $table . ' SET';
         foreach ($data as $key => $value) {
+            // echo $key;
+            // echo '<br>';
+            // echo $value;
+            // echo '<br>';
+
             if (!next($data)) {
                 $reqInsert .= ' ' . $key . ' = :' . $key;
                                     } else {
+                                        
                 $reqInsert .= ' ' . $key . ' = :' . $key . ',';
             }
             $reqExectue[$key] = $value;
+            
+ 
         }
         $reqInsert .= ' WHERE id = :id';
         $reqExectue['id'] = $id;
-        print_r($reqExectue['id']);
         $prepared = $this->conx->prepare($reqInsert);
-        echo self::showDebug($reqInsert, $reqExectue);
+        // echo self::showDebug($reqInsert, $reqExectue);
 
         // On exécute la requête.
         // Retourne TRUE en cas de succès ou FALSE en cas d'échec.
@@ -204,6 +219,7 @@ class PdoDb
             $result = false;
 
         }
+        // echo ($result === true) ? 'ok' : 'fail';
         return $result;
     }
 
@@ -245,5 +261,45 @@ class PdoDb
         return $this->conx->lastInsertId();
     }
 
-  
+
+    // autre fonction pour update des données
+    public function metajour(string $table, object $data, string $id): bool
+    {
+        // On convertit l'objet en tableau
+        $dataTab = get_object_vars($data);
+
+        // On récupère les noms de champs et les valeurs
+        $fields = [];
+        $values = [];
+        foreach ($dataTab as $field => $value) {
+            $fields[] = $field . ' = :' . $field;
+            $values[':' . $field] = $value;
+        }
+
+        // On construit la clause SET
+        $setClause = implode(', ', $fields);
+        // On prépare la requête
+        $reqUpdate = 'UPDATE ' . $table . ' SET ' . $setClause . ' WHERE id = ' . $id;
+
+        $prepared = $this->conx->prepare($reqUpdate);
+        // On injecte dans la requête les données avec leur type
+        foreach ($values as $param => $value) {
+            $type = match (gettype($value)) {
+                'NULL' => PDO::PARAM_NULL,
+                'integer' => PDO::PARAM_INT,
+                'boolean' => PDO::PARAM_BOOL,
+                default => PDO::PARAM_STR,
+            };
+            // On lie une valeur au paramètre
+            $prepared->bindValue($param, $value, $type);
+        }
+
+        /** Pour debugger la requête */
+        // echo self::showDebug($reqUpdate, $dataTab);
+        //exit();
+
+        // On exécute la requête
+        // Retourne TRUE en cas de succès ou FALSE en cas d'échec
+        return $prepared->execute();
+    }
 }

@@ -26,6 +26,7 @@ require_once __DIR__ . '/Classes/SousCollections.php';
 require_once __DIR__ . '/Classes/Admin.php';
 require_once __DIR__ . '/Models/Tabs.php';
 require_once __DIR__ . '/Models/Utilisateurs.php';
+require_once __DIR__ . '/Models/Instagram.php';
 
 
 use MYSHOP\Controllers\MyShopController;

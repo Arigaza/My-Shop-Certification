@@ -64,7 +64,7 @@ class AdminController extends Controller
 
         $tab = explode("/", $_SERVER['REQUEST_URI']);
         $tab[2] = str_replace("-", "_", $tab[2]);
-        $HomeImage = $db->requete('SELECT * FROM home_image ORDER BY RAND() LIMIT 1');
+        $HomeImage = $db->requete('SELECT * FROM home_image');
         $data['Content'] = $HomeImage;
         $data['Tab'] = $tab[2];
         return $this->render('Layouts.admin', 'AdminTemplates.homeimage', $data);
@@ -245,6 +245,18 @@ class AdminController extends Controller
     }
 
 
+
+       /**
+     * CRUD Instagram :
+     * Affiche le formulaire de création d'un instagram
+     * @return void
+     */
+    public function newinstagram(): void
+    {
+        $data['action'] = 'newinstagram';
+        echo $this->render('Layouts.admin', 'AdminTemplates.instagramform', $data, 'Ajouter un utilisateur');
+    }
+
     // list les compte instagram enregistré
     public function listInstagram() 
     {
@@ -259,7 +271,6 @@ class AdminController extends Controller
 // créer un compte instagram
 public function createInstagram(array $post): bool
 {
-    print_r($post);
     /**
      * On crée un objet instagram basé sur son modèle
      */
@@ -274,11 +285,86 @@ public function createInstagram(array $post): bool
     return $cnx->inserer('Instagram', $instagramObj);
 }
 
-// modifier un compte instagram
 
+ /**
+     * CRUD Instagram :
+     * Affiche le formulaire d'édition d'un Instagram
+     * @return void
+     */
+    public function editInstagram(): void
+    {
+        $data = [];
+        $data['instagramID'] = $_GET['id'];
+        $data['action'] = 'editinstagram';
 
+        /** On récupère les infos de l'utilisateur en base de données */
+        $cnx = PdoDb::getInstance();
+        $requeteUsers = sprintf('SELECT * from `Instagram` WHERE `id` =%d', $data['instagramID']);
+        $data['instagraminfos'] = $cnx->requete($requeteUsers, 'fetch');
 
-// supprimer un compte instagram
+        echo $this->render('Layouts.admin', 'AdminTemplates.instagramform', $data, 'Modifier un instagram');
+    }
 
+ /**
+     * CRUD UTILISATEUR :
+     * Met à jour un utilisateur en base de données
+     * @param array $post Les données issues du formulaire
+     * @return bool Vrai si l'insertion en base s'est bien passée ou faux
+     */
+    public function updateInstagram(array $post): bool
+    {
+
+        // On supprime le champ cryptedPw si il est vide
+       
+
+        /**
+         * On crée un objet User basé sur son modèle avec les données du post nettoyées
+         */
+        $userObj = new InstagramModele($post);
+
+        // On se connecte à la database
+        $cnx = PdoDb::getInstance();
+        /**
+         * On insère le nouvel utilisateur en base de données
+         */
+        return $cnx->metajour('instagram', $userObj, $post['id']);
+    }
+
+       /**
+     * CRUD Instagram :
+     * Affiche le formulaire de confirmation de suppression d'un instagram
+     * @return void
+     */
+    public function deleteInstagram(): void
+    {
+        // On récupère l'identifiant unique de l'utilisateur
+        $uid = $_GET['id'] ?? $_POST['id'];
+
+        // On se connecte à la database
+        $cnx = PdoDb::getInstance();
+
+        // On récupère en base de données l'uid, le nom et le prénom de l'utilisateur
+        $usersql = sprintf('SELECT `id`, `name`, `link` FROM `instagram` WHERE `id` =%d', $uid);
+        $user = $cnx->requete($usersql, 'fetch');
+
+        echo $this->render('Layouts.admin', 'AdminTemplates.deleteinstagram', $user, 'Supprimer un instagram');
+    }
+
+   /**
+     * CRUD UTILISATEUR :
+     * Supprime un utilisateur de la base de données
+     * @param int $uid L'id de l'utilisateur à supprimer
+     * @return bool Renvoie Vrai si la suppression s'est bien passée sinon Faux
+     */
+    public function destroyInstagram(int $uid): bool
+    {
+        // On se connecte à la database
+        $cnx = PdoDb::getInstance();
+
+        /**
+         * On supprime l'utilisateur de la base de données
+         */
+        return $cnx->delete('instagram', $uid);
+    }
 
 }
