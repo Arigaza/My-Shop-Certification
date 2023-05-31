@@ -302,8 +302,6 @@ protected function cleanUpValues(array $post) :array {
     {
         if ($_SESSION['admin'] === 0) {
             if ($_GET['id'] !== $_SESSION['id']) {
-            
-            
                 header('Location:' . MyShopController::getRoute('admin/setting'));
                 exit();
             }
@@ -358,6 +356,11 @@ protected function cleanUpValues(array $post) :array {
      */
     public function destroyUser(int $uid): bool
     {
+
+        if ($_SESSION['admin'] === 0) {
+                header('Location:' . MyShopController::getRoute('admin/setting'));
+                exit();
+            }
         // On se connecte à la database
         $cnx = PdoDb::getInstance();
 
